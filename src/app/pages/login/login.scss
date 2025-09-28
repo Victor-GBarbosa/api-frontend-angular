@@ -2,7 +2,7 @@
 
 :host {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   min-height: 100vh;
   background: $white-color;
@@ -10,8 +10,19 @@
     Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-img {
-  max-width: 200px;
+.brandDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem; // Adiciona espaço entre a imagem e o título
+
+  img {
+    max-width: 100px;
+  }
+
+  h1 {
+    font-size: 3.5em;
+  }
 }
 
 .formCard {
@@ -72,7 +83,7 @@ img {
   label {
     position: absolute;
     left: 0.75rem;
-    top: 1rem;
+    top: 0.75rem;
     color: #888;
     background: white;
     padding: 0 0.25rem;
