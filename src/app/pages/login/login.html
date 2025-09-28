@@ -3,18 +3,18 @@
   <h1>Placeholder.co</h1>
 </div>
 
-<form action="submit">
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
   <div class="formCard">
     <h2>Login</h2>
     <div class="floating-label">
-      <input type="text" id="emailInput" required />
+      <input type="email" id="emailInput" formControlName="email" required />
       <label for="emailInput">Email</label>
     </div>
     <div class="floating-label">
-      <input type="text" id="passwordInput" required />
+      <input type="password" id="passwordInput" formControlName="password" required />
       <label for="passwordInput">Senha</label>
     </div>
-    <button class="loginBtn">Entrar</button>
+    <button type="submit" class="loginBtn" [disabled]="loginForm.invalid">Entrar</button>
     <div class="otherOptions">
       <p>Esqueci minha senha</p>
       <p>Criar conta</p>
