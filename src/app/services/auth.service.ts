@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { LoginCredentials, LoginResponse } from '../models/login.interface';
+import { response } from 'express';
 
 @Injectable({
   providedIn: 'root',
@@ -11,18 +12,22 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  login(credentials: LoginCredentials): Observable<LoginResponse> {
-    return this.http.post<LoginResponse>(`${this.apiUrl}/auth/login`, credentials).pipe(
-      tap((response) => {
-        if (response && response.token) {
-          this.setToken(response.token);
-        }
-      })
-    );
+  login(credentials: LoginCredentials) {
+    console.log(credentials);
+    let response;
+    this.http.post<LoginResponse>(`${this.apiUrl}auth/login`, credentials).subscribe({
+      next: (loginResponse) => {
+        this.setToken(loginResponse.token);
+        console.log('Resposta recebida:', loginResponse);
+      },
+      error: (error) => {
+        console.error('Erro na requisição:', error);
+      },
+    });
   }
 
   setToken(token: string): void {
-    document.cookie = `auth_token=${token}; path=/; secure; samestire=strict`;
+    document.cookie = `auth_token=${token}; path=/; secure; samesite=strict; max-age=2147483647 `;
   }
 
   getToken(): string | null {

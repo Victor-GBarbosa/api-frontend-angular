@@ -3,13 +3,13 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { LoginCredentials } from '../../models/login.interface';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, HttpClientModule, RouterModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule],
   templateUrl: './login.html',
   styleUrl: './login.scss',
 })
@@ -18,12 +18,12 @@ export class Login {
 
   constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+      login: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(1)]],
     });
   }
 
   onSubmit() {
-    console.log('test');
+    this.authService.login(this.loginForm.value);
   }
 }
