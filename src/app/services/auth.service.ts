@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { LoginCredentials, LoginResponse } from '../models/login.interface';
 import { response } from 'express';
+import { NotificationService } from './notification.service';
 
 @Injectable({
   providedIn: 'root',
@@ -10,11 +11,10 @@ import { response } from 'express';
 export class AuthService {
   private apiUrl = 'http://localhost:8080/';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private notificationService: NotificationService) {}
 
   login(credentials: LoginCredentials) {
     console.log(credentials);
-    let response;
     this.http.post<LoginResponse>(`${this.apiUrl}auth/login`, credentials).subscribe({
       next: (loginResponse) => {
         this.setToken(loginResponse.token);
@@ -22,6 +22,7 @@ export class AuthService {
       },
       error: (error) => {
         console.error('Erro na requisição:', error);
+        this.notificationService.show('teste', 'error'); // notification test
       },
     });
   }

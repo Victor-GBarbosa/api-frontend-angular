@@ -1,0 +1,44 @@
+.notification-card {
+  color: white;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  min-width: 250px;
+  font-family: sans-serif;
+}
+
+.notification-card.success {
+  background-color: #28a745;
+}
+
+.notification-card.error {
+  background-color: #dc3545;
+}
+
+.notification-card.info {
+  background-color: #17a2b8;
+}
+
+.notification-card.warning {
+  background-color: #ffc107;
+  color: #212529;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  color: inherit; /* Herda a cor do texto do pai (.notification-card) */
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0 0 0 16px;
+  line-height: 1;
+}
+
+.close-button:hover {
+  opacity: 0.7;
+}

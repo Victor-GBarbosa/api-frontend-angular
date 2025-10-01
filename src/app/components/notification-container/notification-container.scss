@@ -1,0 +1,6 @@
+:host {
+  position: fixed; /* Fixo em relação à janela do navegador */
+  top: 20px;
+  right: 20px;
+  z-index: 1000; /* Garante que fique acima da maioria dos outros elementos */
+}

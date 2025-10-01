@@ -5,6 +5,8 @@ import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { LoginCredentials } from '../../models/login.interface';
+import { NotificationService } from '../../services/notification.service';
+import { Notification } from '../../components/assets/notification/notification';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +18,12 @@ import { LoginCredentials } from '../../models/login.interface';
 export class Login {
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router,
+    private notifcationService: NotificationService
+  ) {
     this.loginForm = this.fb.group({
       login: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(1)]],

@@ -1,0 +1,6 @@
+@if (notification) {
+<div [ngClass]="getNotificationClass()">
+  <span>{{ notification.message }}</span>
+  <button class="close-button" (click)="onClose()">x</button>
+</div>
+}

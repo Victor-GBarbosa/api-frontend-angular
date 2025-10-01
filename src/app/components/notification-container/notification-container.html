@@ -1,0 +1,3 @@
+@if (notificationService.notifications$ | async; as notifications) { @for (notification of
+notifications; track notification.id) {
+<app-notification [notification]="notification" (close)="onClose($event)"> </app-notification>} }
