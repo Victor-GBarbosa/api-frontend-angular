@@ -35,28 +35,8 @@
   h2 {
     margin-bottom: 1em;
   }
-  .otherOptions {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-    margin: 1rem 0;
 
-    p,
-    a {
-      text-decoration: none;
-      margin: 0;
-      cursor: pointer;
-      color: gray;
-      font-size: 0.9rem;
-
-      &:hover {
-        color: $primary-color;
-        // text-decoration: underline;
-      }
-    }
-  }
-
-  .loginBtn {
+  .registerBtn {
     width: 100%;
     padding: 0.9em;
     background-color: $primary-color;

@@ -1,0 +1,35 @@
+<div class="brandDiv">
+  <img src="logo-black.png" alt="alt" />
+  <h1>Placeholder.co</h1>
+</div>
+
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <div class="formCard">
+    <h2>Registre-se</h2>
+    <div class="floating-label">
+      <input type="text" id="nameInput" formControlName="name" />
+      <label for="nameInput">Nome</label>
+    </div>
+    <div class="floating-label">
+      <input type="email" id="emailInput" formControlName="email" />
+      <label for="emailInput">Email</label>
+    </div>
+    <div class="floating-label">
+      <input type="password" id="passwordInput" formControlName="password" />
+      <label for="passwordInput">Senha</label>
+    </div>
+    <div class="floating-label">
+      <input type="password" id="confirmPasswordInput" formControlName="passwordConfirm" />
+      <label for="confirmPasswordInput">Confirme sua senha</label>
+    </div>
+    <div class="floating-label">
+      <input type="text" id="cpfInput" formControlName="cpf" />
+      <label for="cpfInput">CPF</label>
+    </div>
+    <div class="floating-label">
+      <input type="text" id="phoneInput" formControlName="phoneNumber" />
+      <label for="cpfInput">Telefone</label>
+    </div>
+    <button type="submit" class="registerBtn" [disabled]="registerForm.invalid">Registrar</button>
+  </div>
+</form>

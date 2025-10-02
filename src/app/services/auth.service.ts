@@ -4,6 +4,7 @@ import { Observable, tap } from 'rxjs';
 import { LoginCredentials, LoginResponse } from '../models/login.interface';
 import { response } from 'express';
 import { NotificationService } from './notification.service';
+import { RegisterCredentials } from '../models/register.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -43,5 +44,17 @@ export class AuthService {
 
   logout(): void {
     document.cookie = 'auth_token=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+  }
+
+  register(credentials: RegisterCredentials) {
+    this.http.post<string>(`${this.apiUrl}auth/register`, credentials).subscribe({
+      next: (registerResponse) => {
+        console.log('Resposta recebida:', registerResponse);
+      },
+      error: (error) => {
+        console.error('Erro na requisição:', error);
+        this.notificationService.show('teste', 'error'); // notification test
+      },
+    });
   }
 }
