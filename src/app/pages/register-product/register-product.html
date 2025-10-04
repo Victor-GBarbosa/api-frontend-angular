@@ -1,0 +1,50 @@
+<app-header></app-header>
+
+<section>
+  <div class="productRegisterForm-div">
+    <h1>Informações do produto</h1>
+    <form [formGroup]="productRegisterForm">
+      <div class="formInputs">
+        <div class="floating-label">
+          <input type="text" id="productName" formControlName="name" required />
+          <label for="productName">Nome do produto</label>
+        </div>
+        <div class="floating-label">
+          <input type="number" id="priceInput" formControlName="price" required />
+          <label for="priceInput">Preço</label>
+        </div>
+        <div class="floating-label">
+          <input type="text" id="descriptionInput" formControlName="description" required />
+          <label for="descriptionInput">Descrição</label>
+        </div>
+        <div class="floating-label">
+          <input type="url" id="imageUrlInput" formControlName="imageURL" required />
+          <label for="imageUrlInput">URL da Imagem</label>
+        </div>
+        <div class="floating-label">
+          <input type="number" id="initialStockInput" formControlName="initialStock" required />
+          <label for="initialStockInput">Estoque inicial</label>
+        </div>
+        <div class="floating-label">
+          <select
+            name="categorySelectorInput"
+            id="categorySelectorInput"
+            formControlName="category"
+          >
+            <option value="0">Selecione uma Categoria</option>
+          </select>
+          <label for="categorySelectorInput">Categoria</label>
+        </div>
+      </div>
+      <div class="formButtons">
+        <button>Voltar</button>
+        <button>Cadastrar Produto</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="productPreview-div">
+    <h1>Preview do Produto</h1>
+    <app-product-card [productData]="productCardData"></app-product-card>
+  </div>
+</section>

@@ -9,7 +9,6 @@ import {
 import { AuthService } from '../../services/auth.service';
 import { NotificationService } from '../../services/notification.service';
 import { RegisterCredentials } from '../../models/register.interface';
-import { register } from 'module';
 
 @Component({
   selector: 'app-register',
