@@ -1,0 +1,82 @@
+:host {
+  display: grid;
+  justify-content: center;
+}
+
+.dropdown {
+  width: 23rem;
+  border-radius: 15px 15px 15px 15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.headerSection {
+  color: white;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  padding: 1rem 1rem;
+  border-radius: 15px 15px 0 0;
+  gap: 15px;
+  p {
+    font-size: 1.3rem;
+    font-weight: bold;
+  }
+
+  img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+}
+
+.userActions {
+  background-color: white;
+  border-radius: 0 0 15px 15px;
+
+  & > div {
+    // border-bottom: gray solid 1px;
+  }
+
+  & > div > div {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 0.5rem 1rem;
+    border-bottom: grey;
+
+    &:hover {
+      background-color: rgb(230, 230, 230);
+    }
+  }
+
+  button {
+    background-color: transparent;
+    border: none;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  img {
+    width: 32px;
+    height: 32px;
+  }
+
+  .universal-section {
+    border-radius: 0 0 16px 16px;
+
+    .lastDiv {
+      background-color: black;
+      border-radius: 0 0 15px 15px;
+      border: none;
+      padding: 1rem 1em;
+
+      button {
+        color: white;
+      }
+
+      &:hover {
+        background-color: rgb(211, 71, 71);
+      }
+    }
+  }
+}
