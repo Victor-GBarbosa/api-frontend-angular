@@ -5,14 +5,14 @@ import { LoginCredentials, LoginResponse } from '../models/login.interface';
 import { response } from 'express';
 import { NotificationService } from './notification.service';
 import { RegisterCredentials } from '../models/register.interface';
+import { enviroment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:8080/';
-
   constructor(private http: HttpClient, private notificationService: NotificationService) {}
+  private apiUrl = enviroment.apiUrl;
 
   login(credentials: LoginCredentials) {
     console.log(credentials);
@@ -22,8 +22,6 @@ export class AuthService {
         console.log('Resposta recebida:', loginResponse);
       },
       error: (error) => {
-        console.error('Erro na requisição:', error);
-        this.notificationService.show('teste', 'error'); // notification test
       },
     });
   }
