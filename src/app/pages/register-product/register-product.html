@@ -32,6 +32,10 @@
             formControlName="category"
           >
             <option value="0">Selecione uma Categoria</option>
+            @for (category of categories; track category.id) {
+            <option value="category.id">{{ category.name }}</option>
+
+            }
           </select>
           <label for="categorySelectorInput">Categoria</label>
         </div>
