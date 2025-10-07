@@ -18,7 +18,7 @@
           <label for="descriptionInput">Descrição</label>
         </div>
         <div class="floating-label">
-          <input type="url" id="imageUrlInput" formControlName="imageURL" required />
+          <input type="url" id="imageUrlInput" formControlName="imageUrl" required />
           <label for="imageUrlInput">URL da Imagem</label>
         </div>
         <div class="floating-label">
@@ -33,8 +33,7 @@
           >
             <option value="0">Selecione uma Categoria</option>
             @for (category of categories; track category.id) {
-            <option value="category.id">{{ category.name }}</option>
-
+            <option value="{{ category.id }}">{{ category.name }}</option>
             }
           </select>
           <label for="categorySelectorInput">Categoria</label>
@@ -42,7 +41,7 @@
       </div>
       <div class="formButtons">
         <button>Voltar</button>
-        <button>Cadastrar Produto</button>
+        <button (click)="onSubmit()">Cadastrar Produto</button>
       </div>
     </form>
   </div>

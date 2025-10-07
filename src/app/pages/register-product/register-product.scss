@@ -39,6 +39,10 @@ section {
       padding: 0.7rem;
       font-size: 1rem;
       font-weight: bold;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
 
     button:first-child {

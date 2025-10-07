@@ -9,7 +9,8 @@ import { privateDecrypt } from 'crypto';
 import { NotificationService } from '../../services/notification.service';
 import { error } from 'console';
 import { CategoryInterface } from '../../models/category.model';
-import { DefaultHttpExecptionHendler } from '../../models/defaultHttpExpectionHendler';
+import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register-product',
@@ -33,13 +34,21 @@ export class RegisterProduct implements OnInit {
   constructor(
     private fb: FormBuilder,
     private productRegistrationService: ProductRegistration,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private cookieService: CookieService,
+    private router: Router
   ) {
+    if (!this.cookieService.check('auth_token')) {
+      console.log(this.cookieService.get('auth_token'));
+      this.router.navigate(['']);
+    }
+
+    console.log(this.cookieService.get('auth_token'));
     this.productRegisterForm = this.fb.group({
       name: ['', [Validators.required]],
       price: [null, [Validators.required]],
       description: ['', [Validators.required]],
-      imageURL: ['', [Validators.required]],
+      imageUrl: ['', [Validators.required]],
       initialStock: [null, [Validators.required]],
       category: ['0', [Validators.required]],
     });
@@ -61,11 +70,31 @@ export class RegisterProduct implements OnInit {
   setCategories(): void {
     this.productRegistrationService.getCategories().subscribe({
       next: (response) => {
+        console.log(response);
         this.categories = response;
       },
       error: (response) => {
         this.notificationService.show('Não foi possivel carregar as categorias', 'error');
       },
     });
+  }
+
+  onSubmit(): void {
+    // to be fixed
+    let { initialStock, category, ...productToSubmit } = this.productRegisterForm.value;
+    productToSubmit.category = { id: category };
+    //
+    console.log(productToSubmit);
+    this.productRegistrationService
+      .submitProduct(productToSubmit, this.cookieService.get('auth_token'))
+      .subscribe({
+        next: (promise) => {
+          console.log(promise);
+        },
+        error: (promise) => {
+          console.log(promise);
+        },
+      });
+    console.log('submited');
   }
 }
