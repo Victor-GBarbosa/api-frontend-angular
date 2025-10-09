@@ -1,0 +1,27 @@
+<div class="banner-container">
+  <div class="slides-container">
+    <img
+      *ngFor="let image of images; let i = index"
+      [src]="image"
+      alt="Banner image"
+      [class.active]="i === currentIndex"
+    />
+  </div>
+
+  <!-- Navigation arrows -->
+  <div class="arrows" *ngIf="images.length > 1">
+    <button class="arrow prev" (click)="prevSlide()" aria-label="Previous image">&#10094;</button>
+    <button class="arrow next" (click)="nextSlide()" aria-label="Next image">&#10095;</button>
+  </div>
+
+  <!-- Indicator dots -->
+  <div class="dots" *ngIf="images.length > 1">
+    <button
+      *ngFor="let dot of images; let i = index"
+      class="dot"
+      [class.active]="i === currentIndex"
+      (click)="goToSlide(i)"
+      aria-label="Go to image {{ i + 1 }}"
+    ></button>
+  </div>
+</div>
