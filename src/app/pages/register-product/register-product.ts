@@ -3,11 +3,8 @@ import { Header } from '../../components/header/header';
 import { ProductCard } from '../../components/product-card/product-card';
 import { ProductCardData } from '../../components/product-card/product-card-data.model';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 import { ProductRegistration } from '../../services/product-registration.service';
-import { privateDecrypt } from 'crypto';
 import { NotificationService } from '../../services/notification.service';
-import { error } from 'console';
 import { CategoryInterface } from '../../models/category.model';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
@@ -26,7 +23,7 @@ export class RegisterProduct implements OnInit {
     name: 'Nome do produto',
     price: 0,
     description: 'Descrição do produto',
-    imageURL: 'https://placehold.co/600x400/EEE/31343C?text=Imagem',
+    imageUrl: 'https://placehold.co/600x400/EEE/31343C?text=Imagem',
   };
 
   productCardData: ProductCardData = { ...this.placeholderData };
@@ -60,7 +57,7 @@ export class RegisterProduct implements OnInit {
         name: formValues.name || this.placeholderData.name,
         price: formValues.price || this.placeholderData.price,
         description: formValues.description || this.placeholderData.description,
-        imageURL: formValues.imageURL || this.placeholderData.imageURL,
+        imageUrl: formValues.imageURL || this.placeholderData.imageUrl,
       };
     });
 

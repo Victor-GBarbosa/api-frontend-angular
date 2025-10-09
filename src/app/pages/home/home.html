@@ -1,0 +1,16 @@
+<app-header></app-header>
+<app-banner [images]="bannerImages"></app-banner>
+
+<section class="hero-section">
+  <section>
+    <h1>Produtos em Destaque</h1>
+    <div class="productCards">
+      @for (item of productsMock; track $index) {
+      <app-product-card [productData]="item"></app-product-card>
+      }
+    </div>
+  </section>
+  <section>
+    <h1>Compre com 25R$</h1>
+  </section>
+</section>

@@ -5,21 +5,42 @@
 }
 
 .productCard-div {
-  width: 20vw;
-
+  width: 100%;
+  max-width: 350px;
+  min-width: 250px;
   border-radius: 15px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  display: flexbox;
+  display: flex;
   flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: white;
+  position: relative;
+  padding-bottom: 1rem;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    z-index: 10;
+    border-radius: 15px 15px 0 0;
+    .productActions-div {
+      max-height: 150px;
+      opacity: 1;
+      padding: 1rem 5% 1.5rem 5%;
+      z-index: 11;
+    }
+  }
+
   img {
     margin: 5% 5% 10% 5%;
     width: 90%;
-    height: 50%;
+    height: 200px;
     border-radius: 15px;
+    object-fit: contain;
+    background-color: transparent;
   }
-
   .productInfo-div {
     margin: 0% 5% 0% 5%;
+    padding-bottom: 1rem;
 
     h2 {
       font-size: 1.6rem;
@@ -38,11 +59,23 @@
       text-overflow: ellipsis;
     }
   }
-
   .productActions-div {
     display: flex;
     justify-content: space-between;
-    margin: 5% 5% 5% 5%;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    max-height: 0;
+    opacity: 0;
+    padding: 0 5%;
+    overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.4s ease, border;
+    background-color: white;
+    border-radius: 0 0 15px 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+
+    border-top: none;
 
     button {
       padding: 0.8rem;
@@ -50,17 +83,32 @@
       width: 47%;
       border: 2px black solid;
       font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover {
+        transform: scale(1.05);
+      }
     }
 
     button:first-child {
       background-color: black;
       color: white;
       border: none;
+
+      &:hover {
+        background-color: #333;
+      }
     }
 
     button:last-child {
       background-color: transparent;
       color: black;
+
+      &:hover {
+        background-color: black;
+        color: white;
+      }
     }
   }
 }
