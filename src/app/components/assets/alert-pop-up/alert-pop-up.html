@@ -1,0 +1,18 @@
+@if (showAlertBool) {
+<div class="wrapper-div">
+  <div class="alert">
+    <h1>{{ alertPopUpData.title }}</h1>
+    <p>
+      {{ alertPopUpData.description }}
+    </p>
+    <div class="actions">
+      <button (click)="alertPopUpData.negativeAction()">
+        {{ alertPopUpData.negativeActionName }}
+      </button>
+      <button (click)="alertPopUpData.possitiveAction()">
+        {{ alertPopUpData.possitiveActionName }}
+      </button>
+    </div>
+  </div>
+</div>
+}
