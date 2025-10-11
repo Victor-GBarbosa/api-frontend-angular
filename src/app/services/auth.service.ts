@@ -6,48 +6,52 @@ import { response } from 'express';
 import { NotificationService } from './notification.service';
 import { RegisterCredentials } from '../models/register.interface';
 import { enviroment } from '../../environments/environment';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private http: HttpClient, private notificationService: NotificationService) {}
+  constructor(
+    private http: HttpClient,
+    private notificationService: NotificationService,
+    private cookieService: CookieService
+  ) {}
   private apiUrl = enviroment.apiUrl;
 
   login(credentials: LoginCredentials) {
-    console.log(credentials);
     this.http.post<LoginResponse>(`${this.apiUrl}auth/login`, credentials).subscribe({
       next: (loginResponse) => {
         this.setToken(loginResponse.token);
-        console.log('Resposta recebida:', loginResponse);
       },
-      error: (error) => {
-      },
+      error: (error) => {},
     });
   }
 
   setToken(token: string): void {
-    document.cookie = `auth_token=${token}; path=/; secure; samesite=strict; max-age=2147483647 `;
+    const maxAge = 60 * 60 * 24 * 30; // 30 dias em segundos (Será mudado em breve)
+    this.cookieService.set('auth_token', token, maxAge, '/', undefined, true, 'Strict');
   }
 
-  getToken(): string | null {
-    const cookies = document.cookie.split(';');
-    const tokenCookie = cookies.find((cookie) => cookie.trim().startsWith('auth_token='));
-    return tokenCookie ? tokenCookie.split('=')[1] : null;
+  getToken(): string {
+    if (this.cookieService.get('auth_tokenk')) {
+      return this.cookieService.get('auth_tokenk');
+    }
+    return '';
   }
 
   isLoggedIn(): boolean {
-    return !!this.getToken();
+    return this.cookieService.check('auth_token');
   }
 
   logout(): void {
-    document.cookie = 'auth_token=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    this.cookieService.delete('auth_token');
   }
 
   register(credentials: RegisterCredentials) {
     this.http.post<string>(`${this.apiUrl}auth/register`, credentials).subscribe({
       next: (registerResponse) => {
-        console.log('Resposta recebida:', registerResponse);
+        this.notificationService.show('Logado com sucesso', 'success');
       },
       error: (error) => {
         console.error('Erro na requisição:', error);
