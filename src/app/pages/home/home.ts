@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Header } from '../../components/header/header';
 import { Banner } from '../../components/banner/banner';
 import { ProductCard } from '../../components/product-card/product-card';
-import { productsMock } from '../../mocks/productMock';
+import { HomePageService } from '../../services/home-page';
+import { ProductModel } from '../../models/product.model';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-home',
@@ -11,8 +13,7 @@ import { productsMock } from '../../mocks/productMock';
   styleUrl: './home.scss',
 })
 export class Home implements OnInit {
-  productsMock = productsMock;
-
+  products: ProductModel[] = [];
   bannerImages: string[] = [
     'https://acdn-us.mitiendanube.com/stores/003/064/118/themes/amazonas/2-slide-1751391104739-4999304107-42f33b85d1734f0a887f32e81a5fcbbe1751391106-1920-1920.webp?633981898',
     'https://img.quizur.com/f/img6447f12cd4a6a2.53982006.png?lastEdited=1682436402',
@@ -22,7 +23,15 @@ export class Home implements OnInit {
     'https://www.shutterstock.com/image-vector/ad-banner-natural-beauty-products-600nw-1780339220.jpg',
   ];
 
+  constructor(
+    private pageService: HomePageService,
+    private notificationService: NotificationService
+  ) {}
+
   ngOnInit(): void {
-    console.log(productsMock);
+    this.pageService.productsRequest().subscribe({
+      next: (response) => (this.products = response),
+      error: () => this.notificationService.show('Erro ao Carregar os produtos', 'error'),
+    });
   }
 }

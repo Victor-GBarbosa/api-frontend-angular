@@ -5,7 +5,7 @@
   <section>
     <h1>Produtos em Destaque</h1>
     <div class="productCards">
-      @for (item of productsMock; track $index) {
+      @for (item of products; track $index) {
       <app-product-card [productData]="item"></app-product-card>
       }
     </div>

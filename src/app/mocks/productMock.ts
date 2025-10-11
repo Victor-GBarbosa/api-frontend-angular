@@ -1,6 +1,7 @@
 import { ProductModel } from '../models/product.model';
+export interface ProductMockModel {}
 
-export let productsMock: ProductModel[] = [
+export let productsMock: ProductMockModel[] = [
   {
     name: 'Celular',
     price: 0,
