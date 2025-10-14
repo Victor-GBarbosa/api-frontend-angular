@@ -42,6 +42,5 @@ export class Register {
     } else {
       this.authService.register(registerCredentials);
     }
-    console.log(passwordConfirm, registerCredentials);
   }
 }

@@ -36,11 +36,9 @@ export class RegisterProduct implements OnInit {
     private router: Router
   ) {
     if (!this.cookieService.check('auth_token')) {
-      console.log(this.cookieService.get('auth_token'));
       this.router.navigate(['']);
     }
 
-    console.log(this.cookieService.get('auth_token'));
     this.productRegisterForm = this.fb.group({
       name: ['', [Validators.required]],
       price: [null, [Validators.required]],
@@ -67,7 +65,6 @@ export class RegisterProduct implements OnInit {
   setCategories(): void {
     this.productRegistrationService.getCategories().subscribe({
       next: (response) => {
-        console.log(response);
         this.categories = response;
       },
       error: (response) => {
@@ -81,17 +78,10 @@ export class RegisterProduct implements OnInit {
     let { initialStock, category, ...productToSubmit } = this.productRegisterForm.value;
     productToSubmit.category = { id: category };
     //
-    console.log(productToSubmit);
-    this.productRegistrationService
-      .submitProduct(productToSubmit, this.cookieService.get('auth_token'))
-      .subscribe({
-        next: (promise) => {
-          console.log(promise);
-        },
-        error: (promise) => {
-          console.log(promise);
-        },
-      });
-    console.log('submited');
+
+    this.productRegistrationService.submitProduct(productToSubmit).subscribe({
+      next: (promise) => {},
+      error: (promise) => {},
+    });
   }
 }
