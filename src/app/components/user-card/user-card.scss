@@ -1,0 +1,124 @@
+:host {
+  display: block;
+  width: min(30vw, 400px);
+  margin: 0 auto;
+}
+
+.header {
+  background-color: #111;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 15px 15px 0 0;
+
+  h1 {
+    font-weight: 700;
+    font-size: 1rem;
+    margin: 0;
+  }
+}
+.userCard-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+
+  width: 100%;
+  background: #fff;
+  border-radius: 0 0 15px 15px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.58);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+
+  text-align: center;
+
+  img {
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .content {
+    width: 100%;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+  }
+}
+
+.floating-label {
+  position: relative;
+  margin-bottom: 1rem;
+
+  input,
+  select {
+    width: 100%;
+    padding: 0.9rem 0.75rem 0.45rem 0.75rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    outline: none;
+    font-size: 0.95rem;
+    background: #fff;
+    box-sizing: border-box;
+    transition: border-color 0.18s ease, box-shadow 0.18s ease;
+  }
+
+  select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M10.293 3.293L6 7.586 1.707 3.293A1 1 0 00.293 4.707l5 5a1 1 0 001.414 0l5-5a1 1 0 10-1.414-1.414z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 12px;
+    padding-right: 2.5rem;
+  }
+
+  label {
+    position: absolute;
+    left: 0.75rem;
+    top: 0.75rem;
+    color: #888;
+    background: #fff;
+    padding: 0 0.25rem;
+    transition: all 0.18s ease;
+    pointer-events: none;
+    font-size: 0.95rem;
+  }
+
+  input:focus + label,
+  input:valid + label,
+  select:focus + label,
+  select:valid + label {
+    top: -0.5rem;
+    left: 0.75rem;
+    font-size: 0.78rem;
+    color: var(--primary-color, #2b7cff);
+  }
+
+  input:focus,
+  select:focus {
+    border-color: var(--primary-color, #2b7cff);
+    box-shadow: 0 4px 12px rgba(43, 124, 255, 0.08);
+  }
+}
+
+@media (max-width: 600px) {
+  :host {
+    width: 90vw;
+  }
+
+  .userCard-div .header {
+    padding: 0.75rem;
+  }
+
+  .userCard-div img {
+    width: 48px;
+    height: 48px;
+  }
+}

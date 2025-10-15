@@ -4,6 +4,7 @@ import { Register } from './pages/register/register';
 import { RegisterProduct } from './pages/register-product/register-product';
 import { Home } from './pages/home/home';
 import { AlertPopUp } from './components/assets/alert-pop-up/alert-pop-up';
+import { UserCard } from './components/user-card/user-card';
 
 export const routes: Routes = [
   { path: '', component: Home },
@@ -11,5 +12,5 @@ export const routes: Routes = [
   { path: 'login', component: Login },
   { path: 'register', component: Register },
   { path: 'register-product', component: RegisterProduct },
-  { path: 'test', component: AlertPopUp },
+  { path: 'test', component: UserCard },
 ];
