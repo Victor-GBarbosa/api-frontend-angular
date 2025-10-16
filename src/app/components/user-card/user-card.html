@@ -3,12 +3,16 @@
 </div>
 <div class="userCard-div">
   <img src="icons/dropdown/user.svg" alt="" />
-  <h1>Davila Dareia</h1>
-  <p>davila.dareia@hotmail.com</p>
-  <div class="floating-label">
-    <select name="categorySelectorInput" id="categorySelectorInput" formControlName="category">
-      <option value="0">Selecione uma Categoria</option>
-      <option value=""></option>
-    </select>
-  </div>
+  <h1>{{ userCardInfo.name }}</h1>
+  <p>{{ userCardInfo.email }}</p>
+  <form [formGroup]="roleSelector" action="">
+    <div class="floating-label">
+      <select name="userRole" id="userRole" formControlName="userRole">
+        <option value="1">Usuario</option>
+        <option value="2">Vendedor</option>
+        <option value="3">Administrador</option>
+        <option value="4">Owner</option>
+      </select>
+    </div>
+  </form>
 </div>
