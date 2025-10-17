@@ -1,0 +1,113 @@
+$ownerColor: rgb(233, 72, 72);
+$adminColor: rgb(134, 26, 161);
+$sellerColor: rgb(8, 177, 45);
+$userColor: rgb(83, 83, 235);
+section {
+  display: flex;
+  justify-content: center;
+}
+
+.section-div {
+  width: 95%;
+  color: white;
+}
+
+.users-header {
+  margin: 2rem 0 2rem 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.9rem;
+  align-items: center;
+  align-content: center;
+  border-radius: 10px;
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  p {
+    background-color: rgba($color: #7c7c7c, $alpha: 0.4);
+    padding: 0.3rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+  }
+}
+
+.ownerRole {
+  background-color: rgba($ownerColor, 0.2);
+  color: rgba($ownerColor, 1);
+  border-left: rgba($ownerColor, 1) solid 4px;
+  p {
+    font-weight: bolder;
+    color: rgba(lighten(saturate($ownerColor, 100%), 60%), 1);
+    background-color: rgba(saturate($ownerColor, 100%), 0.3);
+  }
+}
+
+.adminRole {
+  background-color: rgba($adminColor, 0.2);
+  color: rgba($adminColor, 1);
+  border-left: rgba($adminColor, 1) solid 4px;
+  p {
+    font-weight: bolder;
+    color: rgba(lighten(saturate($adminColor, 100%), 60%), 1);
+    background-color: rgba(saturate($adminColor, 100%), 0.3);
+  }
+}
+
+.sellerRole {
+  background-color: rgba($sellerColor, 0.2);
+  color: rgba($sellerColor, 1);
+  border-left: rgba($sellerColor, 1) solid 4px;
+  p {
+    font-weight: bolder;
+    color: rgba(lighten(saturate($sellerColor, 100%), 60%), 1);
+    background-color: rgba(saturate($sellerColor, 100%), 0.3);
+  }
+}
+
+.userRole {
+  background-color: rgba($userColor, 0.2);
+  color: rgba($userColor, 1);
+  border-left: rgba($userColor, 1) solid 4px;
+  p {
+    font-weight: bolder;
+    color: rgba(lighten(saturate($userColor, 100%), 60%), 1);
+    background-color: rgba(saturate($userColor, 100%), 0.3);
+  }
+}
+
+.users-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.user-card {
+  border-radius: 13px;
+  color: black !important;
+}
+
+@media (max-width: 1400px) {
+  .users-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 1024px) {
+  .users-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .user-card {
+    width: 100%;
+  }
+  .users-container {
+    justify-items: center;
+  }
+  .users-container {
+    grid-template-columns: 1fr;
+  }
+}

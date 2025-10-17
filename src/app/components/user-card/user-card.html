@@ -1,5 +1,5 @@
 <div class="header">
-  <h1>User #ID</h1>
+  <h1>User #{{ userCardInfo.id }}</h1>
 </div>
 <div class="userCard-div">
   <img src="icons/dropdown/user.svg" alt="" />
@@ -8,11 +8,15 @@
   <form [formGroup]="roleSelector" action="">
     <div class="floating-label">
       <select name="userRole" id="userRole" formControlName="userRole">
-        <option value="1">Usuario</option>
-        <option value="2">Vendedor</option>
-        <option value="3">Administrador</option>
-        <option value="4">Owner</option>
+        <option [ngValue]="1">Usuario</option>
+        <option [ngValue]="2">Vendedor</option>
+        <option [ngValue]="3">Administrador</option>
+        <option [ngValue]="4">Owner</option>
       </select>
+    </div>
+    <div class="buttons">
+      <button>Salvar</button>
+      <button>Banir</button>
     </div>
   </form>
 </div>

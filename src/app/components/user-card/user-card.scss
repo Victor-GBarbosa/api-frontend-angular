@@ -1,7 +1,7 @@
 :host {
   display: block;
-  width: min(30vw, 400px);
-  margin: 0 auto;
+  // width: min(20vw, 400px);
+  // margin: 0 auto;
 }
 
 .header {
@@ -9,13 +9,12 @@
   color: #fff;
   display: flex;
   align-items: center;
-  gap: 1rem;
-  padding: 1rem;
-  border-radius: 15px 15px 0 0;
+  padding: 0.75rem;
+  border-radius: 9px 9px 0 0;
 
   h1 {
     font-weight: 700;
-    font-size: 1rem;
+    font-size: 0.75rem;
     margin: 0;
   }
 }
@@ -26,9 +25,8 @@
   justify-content: center;
 
   background: #fff;
-  border-radius: 0 0 15px 15px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(0, 0, 0, 0.04);
+  border-radius: 0 0 11px 11px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 
   text-align: center;
 
@@ -43,11 +41,46 @@
   h1 {
     margin-top: 1rem;
   }
-  p {
-    margin-top: 1rem;
-  }
   select {
     margin: 1rem 0 1rem 0;
+  }
+  .buttons {
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    button {
+      text-align: center;
+      padding: 0.8rem 2.7rem;
+      border-radius: 20px;
+      border: 2px black solid;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+
+    button:first-child {
+      background-color: black;
+      color: white;
+
+      &:hover {
+        background-color: #333;
+      }
+    }
+
+    button:last-child {
+      background-color: transparent;
+      color: black;
+
+      &:hover {
+        background-color: black;
+        color: white;
+      }
+    }
   }
 }
 

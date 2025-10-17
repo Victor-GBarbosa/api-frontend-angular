@@ -1,0 +1,49 @@
+<app-header></app-header>
+<section>
+  <div class="section-div">
+    <div>
+      <div class="users-header ownerRole">
+        <h2>Owner</h2>
+        <p>Usuarios: x</p>
+      </div>
+      <div class="users-container">
+        @for (user of users; track user.id) { @if (user.role == 4) {
+        <app-user-card [userCardInfo]="user" class="user-card ownerRole"></app-user-card>
+        } }
+      </div>
+    </div>
+    <div>
+      <div class="users-header adminRole">
+        <h2>Administradores</h2>
+        <p>Usuarios: x</p>
+      </div>
+      <div class="users-container">
+        @for (user of users; track user.id) { @if (user.role == 3) {
+        <app-user-card [userCardInfo]="user" class="user-card adminRole"></app-user-card>
+        } }
+      </div>
+    </div>
+    <div>
+      <div class="users-header sellerRole">
+        <h2>Vendedores</h2>
+        <p>Usuarios: x</p>
+      </div>
+      <div class="users-container">
+        @for (user of users; track user.id) { @if (user.role == 2) {
+        <app-user-card [userCardInfo]="user" class="user-card sellerRole"></app-user-card>
+        } }
+      </div>
+    </div>
+    <div>
+      <div class="users-header userRole">
+        <h2>Usuarios</h2>
+        <p>Usuarios: x</p>
+      </div>
+      <div class="users-container">
+        @for (user of users; track user.id) { @if (user.role == 1) {
+        <app-user-card [userCardInfo]="user" class="user-card userRole"></app-user-card>
+        } }
+      </div>
+    </div>
+  </div>
+</section>

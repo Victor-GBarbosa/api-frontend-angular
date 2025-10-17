@@ -6,13 +6,12 @@
 }
 
 header {
-  $paddingValue: 3em;
   background-color: $black-color;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-right: $paddingValue;
-  padding-left: $paddingValue;
+  padding: 1rem 3rem;
+  gap: 1.5rem;
 }
 
 .brand-div {
@@ -20,12 +19,18 @@ header {
   gap: 1rem;
   align-items: center;
   color: white;
-  min-height: 6rem;
+  min-height: 4rem;
   flex: 1;
 
+  h1 {
+    font-size: 1.25rem;
+    white-space: nowrap;
+  }
+
   img {
-    max-width: 50px;
-    max-height: 50px;
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
   }
 }
 
@@ -35,55 +40,180 @@ header {
   flex: 1;
 
   input {
-    min-height: 2em;
+    width: 100%;
+    max-width: 500px;
+    min-height: 2.5rem;
     border-radius: 10px;
-    min-width: 35vw;
-    padding: 5px;
+    padding: 0.5rem 1rem;
+    border: none;
+    outline: none;
+    font-size: 0.95rem;
+    transition: box-shadow 0.2s ease;
+
+    &:focus {
+      box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2);
+    }
   }
 }
 
 .user-actions {
   display: flex;
-  gap: 2rem;
+  gap: 1.5rem;
   align-items: center;
   color: white;
-  min-height: 6rem;
+  min-height: 4rem;
   flex: 1;
   justify-content: flex-end;
 
-  svg,
-  path {
-    max-width: 32px;
-    max-height: 32px;
-    fill: white;
+  svg {
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    path {
+      fill: white;
+    }
   }
 }
 
 nav {
   background-color: $black-color;
   color: white;
-  font-weight: 700;
+  font-weight: 600;
   display: flex;
-  justify-content: space-around;
-  padding: 0.5em;
-  border-top: solid 1px gray;
+  justify-content: center;
+  padding: 0.75rem 3rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
 
   .navBar-itens {
     display: flex;
-    gap: 10px;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
 
-    & > * {
+    p {
       border: 2px solid transparent;
-      padding: 10px;
-      transition: all 0.3s;
+      padding: 0.75rem 1.25rem;
+      margin: 0;
+      transition: all 0.25s ease;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      letter-spacing: 0.5px;
+
+      &:hover {
+        border: 2px solid white;
+        border-radius: 8px;
+        color: $black-color;
+        background-color: white;
+        cursor: pointer;
+        transform: translateY(-2px);
+      }
+    }
+  }
+}
+
+// Responsividade
+@media (max-width: 1024px) {
+  header {
+    padding: 1rem 2rem;
+    gap: 1rem;
+  }
+
+  .brand-div h1 {
+    font-size: 1.1rem;
+  }
+
+  .search-bar input {
+    min-height: 2.25rem;
+    max-width: 400px;
+  }
+
+  nav {
+    padding: 0.75rem 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+    padding: 1rem 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .brand-div {
+    order: 1;
+    flex: 0 1 auto;
+
+    h1 {
+      font-size: 1rem;
     }
 
-    & > *:hover {
-      border: 2px solid white;
-      border-radius: 15px;
-      color: black;
-      background-color: white;
-      cursor: pointer;
+    img {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  .user-actions {
+    order: 2;
+    flex: 0 1 auto;
+    gap: 1rem;
+
+    svg {
+      width: 28px;
+      height: 28px;
+    }
+  }
+
+  .search-bar {
+    order: 3;
+    flex: 1 1 100%;
+    margin-top: 0.5rem;
+
+    input {
+      max-width: 100%;
+    }
+  }
+
+  nav {
+    padding: 0.5rem 1rem;
+
+    .navBar-itens {
+      gap: 0.5rem;
+
+      p {
+        padding: 0.6rem 1rem;
+        font-size: 0.85rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    padding: 0.75rem 1rem;
+  }
+
+  .user-actions {
+    gap: 0.75rem;
+
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  nav .navBar-itens {
+    width: 100%;
+    justify-content: space-around;
+
+    p {
+      padding: 0.5rem 0.75rem;
+      font-size: 0.8rem;
     }
   }
 }
