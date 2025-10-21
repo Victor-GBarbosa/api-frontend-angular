@@ -13,10 +13,26 @@ export class UserManagementService {
   constructor(private http: HttpClient, private cookieService: CookieService) {}
 
   getUsers(): Observable<userCardModel[]> {
+    console.log(`URL: ${enviroment.apiUrl + 'users'}
+                  Token: ${this.cookieService.get('auth_token')}`);
     return this.http.get<userCardModel[]>(enviroment.apiUrl + 'users', {
       headers: {
         Authorization: this.cookieService.get('auth_token'),
       },
     });
+  }
+
+  setUserRole(userEmail: string, roleToSet: number): Observable<UserModel> {
+    return this.http.patch<UserModel>(
+      enviroment.apiUrl + 'users/' + userEmail,
+      {
+        role: roleToSet,
+      },
+      {
+        headers: {
+          Authorization: this.cookieService.get('auth_token'),
+        },
+      }
+    );
   }
 }

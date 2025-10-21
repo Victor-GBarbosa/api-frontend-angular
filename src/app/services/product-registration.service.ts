@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { enviroment } from '../../environments/environment';
 import { CategoryInterface } from '../models/category.model';
-import { HttpErrorHandling } from './http-error-handling';
+
 import { Observable, throwError } from 'rxjs';
 import { ProductModel } from '../models/product.model';
 import { AuthService } from './auth.service';
@@ -15,7 +15,7 @@ export class ProductRegistration {
 
   constructor(
     private http: HttpClient,
-    private httpErrorHandling: HttpErrorHandling,
+
     private authService: AuthService
   ) {}
 
