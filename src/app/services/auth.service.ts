@@ -29,13 +29,14 @@ export class AuthService {
   }
 
   setToken(token: string): void {
-    const maxAge = 60 * 60 * 24 * 30; // 30 dias em segundos (Será mudado em breve)
-    this.cookieService.set('auth_token', token, maxAge, '/', undefined, true, 'Strict');
+    let maxAge = new Date();
+    maxAge.setHours(maxAge.getHours() + 1);
+    this.cookieService.set('auth_token', token, maxAge, '/', undefined, false, 'Lax');
   }
 
   getToken(): string {
-    if (this.cookieService.get('auth_tokenk')) {
-      return this.cookieService.get('auth_tokenk');
+    if (this.cookieService.get('auth_token')) {
+      return this.cookieService.get('auth_token');
     }
     return '';
   }
@@ -54,7 +55,7 @@ export class AuthService {
         this.notificationService.show('Logado com sucesso', 'success');
       },
       error: (error) => {
-        console.error('Erro na requisição:', error);
+        // console.error('Erro na requisição:', error);
         this.notificationService.show('teste', 'error'); // notification test
       },
     });

@@ -12,6 +12,7 @@ header {
   justify-content: space-between;
   padding: 1rem 3rem;
   gap: 1.5rem;
+  flex-wrap: wrap;
 }
 
 .brand-div {
@@ -20,7 +21,7 @@ header {
   align-items: center;
   color: white;
   min-height: 4rem;
-  flex: 1;
+  flex: 0 1 auto;
 
   h1 {
     font-size: 1.25rem;
@@ -37,7 +38,8 @@ header {
 .search-bar {
   display: flex;
   justify-content: center;
-  flex: 1;
+  flex: 1 1 300px;
+  min-width: 200px;
 
   input {
     width: 100%;
@@ -62,7 +64,7 @@ header {
   align-items: center;
   color: white;
   min-height: 4rem;
-  flex: 1;
+  flex: 0 1 auto;
   justify-content: flex-end;
 
   svg {
@@ -130,7 +132,6 @@ nav {
 
   .search-bar input {
     min-height: 2.25rem;
-    max-width: 400px;
   }
 
   nav {
@@ -141,12 +142,12 @@ nav {
 @media (max-width: 768px) {
   header {
     padding: 1rem 1.5rem;
-    flex-wrap: wrap;
+    justify-content: space-between;
   }
 
   .brand-div {
     order: 1;
-    flex: 0 1 auto;
+    flex: 0 0 auto;
 
     h1 {
       font-size: 1rem;
@@ -160,7 +161,7 @@ nav {
 
   .user-actions {
     order: 2;
-    flex: 0 1 auto;
+    flex: 0 0 auto;
     gap: 1rem;
 
     svg {

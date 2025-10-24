@@ -6,6 +6,7 @@ import { Home } from './pages/home/home';
 import { AlertPopUp } from './components/assets/alert-pop-up/alert-pop-up';
 import { UserCard } from './components/user-card/user-card';
 import { UserManagement } from './pages/user-management/user-management';
+import { TesteDeRequisicao } from './tests/teste-de-requisicao/teste-de-requisicao';
 
 export const routes: Routes = [
   { path: '', component: Home },

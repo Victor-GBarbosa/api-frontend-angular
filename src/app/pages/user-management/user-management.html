@@ -8,7 +8,11 @@
       </div>
       <div class="users-container">
         @for (user of users; track user.id) { @if (user.role == 4) {
-        <app-user-card [userCardInfo]="user" class="user-card ownerRole"></app-user-card>
+        <app-user-card
+          [userCardInfo]="user"
+          class="user-card ownerRole"
+          (roleChanged)="onRoleChange($event)"
+        ></app-user-card>
         } }
       </div>
     </div>
@@ -19,7 +23,11 @@
       </div>
       <div class="users-container">
         @for (user of users; track user.id) { @if (user.role == 3) {
-        <app-user-card [userCardInfo]="user" class="user-card adminRole"></app-user-card>
+        <app-user-card
+          [userCardInfo]="user"
+          class="user-card adminRole"
+          (roleChanged)="onRoleChange($event)"
+        ></app-user-card>
         } }
       </div>
     </div>
@@ -30,7 +38,11 @@
       </div>
       <div class="users-container">
         @for (user of users; track user.id) { @if (user.role == 2) {
-        <app-user-card [userCardInfo]="user" class="user-card sellerRole"></app-user-card>
+        <app-user-card
+          [userCardInfo]="user"
+          class="user-card sellerRole"
+          (roleChanged)="onRoleChange($event)"
+        ></app-user-card>
         } }
       </div>
     </div>
@@ -41,7 +53,11 @@
       </div>
       <div class="users-container">
         @for (user of users; track user.id) { @if (user.role == 1) {
-        <app-user-card [userCardInfo]="user" class="user-card userRole"></app-user-card>
+        <app-user-card
+          [userCardInfo]="user"
+          class="user-card userRole"
+          (roleChanged)="onRoleChange($event)"
+        ></app-user-card>
         } }
       </div>
     </div>

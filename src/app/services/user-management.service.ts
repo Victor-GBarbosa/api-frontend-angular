@@ -12,12 +12,10 @@ import { userCardModel } from '../components/user-card/user-card';
 export class UserManagementService {
   constructor(private http: HttpClient, private cookieService: CookieService) {}
 
-  getUsers(): Observable<userCardModel[]> {
-    console.log(`URL: ${enviroment.apiUrl + 'users'}
-                  Token: ${this.cookieService.get('auth_token')}`);
+  getUsers(token: string): Observable<userCardModel[]> {
     return this.http.get<userCardModel[]>(enviroment.apiUrl + 'users', {
       headers: {
-        Authorization: this.cookieService.get('auth_token'),
+        Authorization: token,
       },
     });
   }

@@ -1,11 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  Validators,
-  ɵInternalFormsSharedModule,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { UserRolesEnum } from '../../models/userRole.model';
 import { UserManagementService } from '../../services/user-management.service';
 import { CookieService } from 'ngx-cookie-service';
@@ -13,14 +7,14 @@ import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-user-card',
-  imports: [ɵInternalFormsSharedModule, ReactiveFormsModule],
+  imports: [ReactiveFormsModule],
   templateUrl: './user-card.html',
   styleUrl: './user-card.scss',
 })
 export class UserCard implements OnInit {
   roleSelector!: FormGroup;
   @Input() userCardInfo!: userCardModel;
-  @Input() roleToSet!: number;
+  @Output() roleChanged = new EventEmitter<userCardModel>();
 
   constructor(
     private fb: FormBuilder,
@@ -35,24 +29,36 @@ export class UserCard implements OnInit {
     });
   }
 
-  //   setUserRole(): void {
-  //     this.userManagementService.setUserRole(this.userCardInfo.email, this.roleToSet).subscribe({
-  //       next: (promise) => {
-  //         this.notificationService.show(
-  //           `Cargo de ${this.userCardInfo.name} foi alterado com sucesso`,
-  //           'success'
-  //         );
-  //       },
-  //       error: (promise) => {
-  //         this.notificationService.show(
-  //           `${promise}: Não foi possivel alterar o cargo ${this.userCardInfo.name}`,
-  //           'error'
-  //         );
-  //       },
-  //     });
-  //   }
-  // }
+  setUserRole(): void {
+    const newRole: number = this.roleSelector.value.userRole;
+    this.userManagementService
+      .setUserRole(this.userCardInfo.email, this.roleSelector.value.userRole)
+      .subscribe({
+        next: (promise) => {
+          this.notificationService.show(
+            `Cargo de ${this.userCardInfo.name} foi alterado com sucesso`,
+            'success'
+          );
+
+          const updatedUser: userCardModel = {
+            ...this.userCardInfo,
+            role: newRole,
+          };
+
+          console.log(updatedUser);
+
+          this.roleChanged.emit(updatedUser);
+        },
+        error: (promise) => {
+          this.notificationService.show(
+            `${promise}: Não foi possivel alterar o cargo ${this.userCardInfo.name}`,
+            'error'
+          );
+        },
+      });
+  }
 }
+
 export interface userCardModel {
   id?: number;
   name: string;
