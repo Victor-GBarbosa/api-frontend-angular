@@ -4,6 +4,7 @@ import { Header } from '../../components/header/header';
 import { UserManagementService } from '../../services/user-management.service';
 import { NotificationService } from '../../services/notification.service';
 import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-management',
@@ -24,7 +25,8 @@ export class UserManagement implements OnInit {
   constructor(
     private userMgService: UserManagementService,
     private notificationService: NotificationService,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private router: Router
   ) {
     this.token = cookieService.get('auth_token');
   }
@@ -40,10 +42,12 @@ export class UserManagement implements OnInit {
           this.users.push(...response);
         },
         error: (error) => {
-          this.notificationService.show('Error', 'error');
+          this.notificationService.show('Erro ao carregar usuarios', 'error');
           console.error(error.message);
         },
       });
+    } else {
+      this.router.navigate(['/login']);
     }
   }
 
