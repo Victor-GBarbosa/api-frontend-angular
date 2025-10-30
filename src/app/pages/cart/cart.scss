@@ -1,5 +1,6 @@
 $boxShadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 $borderRadius: 15px;
+$border: #ddd solid 2px;
 
 .cart-section {
   display: grid;
@@ -7,6 +8,7 @@ $borderRadius: 15px;
   margin: 1rem;
   gap: 1rem;
   align-items: center;
+
   .cart-items {
     background-color: #fafafa;
     box-shadow: $boxShadow;
@@ -16,6 +18,7 @@ $borderRadius: 15px;
     padding: 1.5rem;
     min-height: 600px;
     border-radius: $borderRadius;
+    border: $border;
 
     .cart-header {
       display: flex;
@@ -72,6 +75,7 @@ $borderRadius: 15px;
       box-shadow: $boxShadow;
       border-radius: $borderRadius;
       padding: 1.5rem;
+      border: $border;
 
       h3 {
         margin: 0 0 1.5rem 0;
@@ -123,6 +127,7 @@ $borderRadius: 15px;
       box-shadow: $boxShadow;
       border-radius: $borderRadius;
       padding: 1.5rem;
+      border: $border;
 
       h3 {
         margin: 0 0 1rem 0;

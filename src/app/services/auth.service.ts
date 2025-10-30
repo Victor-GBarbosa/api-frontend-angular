@@ -7,6 +7,7 @@ import { NotificationService } from './notification.service';
 import { RegisterCredentials } from '../models/register.interface';
 import { enviroment } from '../../environments/environment';
 import { CookieService } from 'ngx-cookie-service';
+import { UserAuthInfoModel } from '../models/auth.model';
 
 @Injectable({
   providedIn: 'root',
@@ -20,9 +21,9 @@ export class AuthService {
   private apiUrl = enviroment.apiUrl;
 
   login(credentials: LoginCredentials) {
-    this.http.post<LoginResponse>(`${this.apiUrl}auth/login`, credentials).subscribe({
+    this.http.post<UserAuthInfoModel>(`${this.apiUrl}auth/login`, credentials).subscribe({
       next: (loginResponse) => {
-        this.setToken(loginResponse.token);
+        this.setUserAuthInfo(loginResponse);
       },
       error: (error) => {},
     });
@@ -39,6 +40,22 @@ export class AuthService {
       return this.cookieService.get('auth_token');
     }
     return '';
+  }
+
+  setUserAuthInfo(info: UserAuthInfoModel): void {
+    let maxAge = new Date();
+    maxAge.setHours(maxAge.getHours() + 1);
+    this.cookieService.set('auth_token', info.token, maxAge, '/', undefined, false, 'Lax');
+    this.cookieService.set('user_email', info.email);
+    this.cookieService.set('user_id', info.id.toString());
+  }
+
+  getUserAuthInfo(): UserAuthInfoModel {
+    return {
+      token: this.cookieService.get('auth_token'),
+      email: this.cookieService.get('user_email'),
+      id: parseInt(this.cookieService.get('user_id')),
+    };
   }
 
   isLoggedIn(): boolean {

@@ -6,11 +6,15 @@
       <button>Limpar carrinho</button>
     </div>
     <div class="cart-items-list">
-      <div id="empty-cart-warning">
+      <!-- <div id="empty-cart-warning" hidden>
         <div>🛒</div>
         <p>O Seu carrinho esta vazio, continue comprado</p>
         <button>Ver produtos</button>
-      </div>
+      </div> -->
+      @for (item of itemList; track item.id) {
+      <app-cart-item-card [item]="item"></app-cart-item-card>
+      }
+
       <!-- Aqui serão adicionados os cart-item cards -->
     </div>
   </div>

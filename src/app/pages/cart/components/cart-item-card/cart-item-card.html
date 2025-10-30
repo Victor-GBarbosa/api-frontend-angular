@@ -1,0 +1,16 @@
+<div class="cart-item-card">
+  <img src="{{ item.product.imageUrl }}" alt="Produto" class="product-image" />
+  <div class="product-info">
+    <h3>{{ item.product.name }}</h3>
+    <p class="product-details">Tipo | Cor</p>
+  </div>
+  <div class="product-price">
+    <span>R$ {{ item.product.price }}</span>
+  </div>
+  <div class="quantity-controls">
+    <button class="quantity-btn" (click)="decreaseQuantity()">-</button>
+    <input type="number" min="1" value="{{ item.quantity }}" />
+    <button class="quantity-btn" (click)="increaseQuantity()">+</button>
+  </div>
+  <button class="remove-btn">×</button>
+</div>
